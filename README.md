@@ -1,85 +1,76 @@
 # TheFollowUp
 
 ## Overview
-**TheFollowUp** is an automation tool that allows users to generate, schedule, and manage social media posts and follow-up emails with ease. By leveraging the power of OpenAI's API, TheFollowUp refines the original content and generates relevant follow-up messages. The platform supports seamless integration with email services and social media, offering a comprehensive solution for automating communication. 
 
-The project also includes an admin panel, dynamic user management, and the ability to upgrade to a premium account to access extended features. TheFollowUp is designed with flexibility in mind, enabling users to control follow-ups at any time, and to send emails to multiple recipients simultaneously.
+**TheFollowUp** is an application designed to automate social media posts and follow-up emails. By leveraging OpenAI's API, the app generates and refines posts based on original messages, then creates additional follow-ups that are sent automatically to users at scheduled times.
+
+This project aims to streamline communication by automating repetitive tasks such as responding to emails and posting content on social media. The application uses dynamic scheduling, allowing users to activate and deactivate follow-ups as needed.
 
 ---
 
-## Key Features
-- **User Login and Account Management**:  
-  Secure login functionality with email verification required for account creation. Users can reset passwords and access their accounts with ease.
+## Features
+
+- **User Authentication**:  
+  Users can create accounts, with email confirmation required to activate their accounts. The login process is secured, and users can reset their passwords if needed.
 
 - **Admin Panel**:  
-  The project features an admin panel built with **Django**, enabling administrators to manage users, access settings, and monitor system activity.
+  The Django-based admin panel allows the management of user accounts, follow-up content, and system settings.
 
-- **Follow-up and Post Generation**:  
-  Users can generate social media posts and email follow-ups using **OpenAI**'s API. The tool refines and enhances the original content, providing high-quality text for communication.
+- **Follow-up Generation**:  
+  The application utilizes OpenAI’s API to generate personalized follow-up emails and social media posts based on user input. These can be sent automatically at scheduled intervals.
 
-- **Email to Multiple Recipients**:  
-  The platform allows users to send emails to multiple recipients simultaneously, streamlining communication processes.
+- **Bulk Emailing**:  
+  Allows users to generate and send follow-up emails to multiple recipients simultaneously.
 
-- **Dynamic Follow-up Management**:  
-  Users can activate or deactivate follow-ups at any time via the user-friendly dashboard.
+- **Dynamic Follow-up Control**:  
+  Users can start, stop, and modify follow-ups at any time from the user interface, giving them full control over their communication.
 
-- **Premium Account Upgrade**:  
-  Users can upgrade to a premium account, allowing them to create more than 5 follow-ups. Integration with **Stripe** enables test payments for premium status.
+- **Stripe Integration for Premium Status**:  
+  Users can upgrade to a premium account to create more than 5 follow-ups. A test webhook for Stripe is implemented to handle subscription-based upgrades.
 
-- **Database Integration**:  
-  The project uses an **SQL database** with **pgAdmin** for data storage and management.
+- **Password Reset**:  
+  Users can request a password reset via email, ensuring secure account access.
 
-- **Automated Email Sending**:  
-  Follow-ups are automatically sent by the system using the user's connected email account (Zenbox supported, Google requires 2-step verification and app-specific password).
+- **Account Settings**:  
+  Users can manage their accounts, including email integration, where Zenbox is supported for sending emails. For Gmail integration, users need to enable two-step verification and generate an app-specific password.
 
 - **Responsive Design**:  
-  The application features a responsive, collapsible sidebar menu, making it user-friendly across devices.
+  The application features a responsive, side-expandable menu, ensuring a seamless experience on both desktop and mobile devices.
 
-- **User Dashboard**:  
-  A dashboard displaying all generated follow-ups, email statuses, and a preview of the created content.
+- **Automated Email Sending**:  
+  A background script sends follow-up emails automatically, without user intervention, according to the schedule defined in the user’s settings.
+
+- **Dashboard**:  
+  The dashboard displays a list of generated follow-ups and provides preview details of the emails or social media posts.
 
 ---
 
 ## Tech Stack
-- **Backend**: Django, Python  
-- **Database**: SQL (pgAdmin)  
-- **Frontend**: HTML, CSS (responsive design), JavaScript  
-- **External APIs**: OpenAI API (for content generation), Stripe (for premium accounts)  
-- **Email**: Zenbox (Google Mail requires 2-step verification and app password)  
+
+- **Backend**: Django (Python)
+- **Frontend**: HTML, CSS, JavaScript
+- **Database**: SQL (pgAdmin)
+- **External APIs**: OpenAI API (for content generation), Stripe (for premium account processing)
 
 ---
 
 ## My Contribution
-I was responsible for the majority of the project development, primarily focusing on the **backend** while also contributing to the **frontend** (HTML).
 
-- Developed and maintained the core backend logic using **Django**.
-- Integrated the OpenAI API for generating social media posts and email follow-ups.
-- Designed and implemented user authentication, including email verification and password reset functionalities.
-- Developed the **admin panel** for managing user accounts and follow-up statuses.
-- Implemented features for premium account status, including integration with **Stripe** for payments.
-- Set up the **SQL database** using **pgAdmin** to manage user and follow-up data.
-- Enabled dynamic follow-up control and automated email sending.
+I was responsible for developing the **backend** of the application, which included:
+- Implementing Django models and views to manage user accounts, emails, and follow-up data.
+- Integrating OpenAI API for generating content based on user input.
+- Setting up email services using Zenbox and configuring Stripe for premium status management.
+- Assisting with frontend HTML to create a working user interface, focusing on backend integration.
 
 ---
 
 ## Screenshots
-- **Login Screen**:  
-  (Insert screenshot of the login screen here)
 
-- **Follow-up Details**:  
-  (Insert screenshot showing follow-up details and settings)
+The following screenshots demonstrate some of the core features of the application:
 
-- **Dashboard**:  
-  (Insert screenshot of the dashboard displaying generated emails and follow-ups)
-
-- **Account Settings**:  
-  (Insert screenshot of the account settings page)
+- **Login Screen**
+- **Follow-up Details**
+- **Dashboard with List of Generated Emails**
+- **Account Settings**
 
 ---
-
-## Getting Started
-
-### Prerequisites
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
