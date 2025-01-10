@@ -68,9 +68,16 @@ I was responsible for developing the **backend** of the application, which inclu
 
 The following screenshots demonstrate some of the core features of the application:
 
-- **Login Screen**
-- **Follow-up Details**
-- **Dashboard with List of Generated Emails**
-- **Account Settings**
+- **Login Screen**  
+  ![Login Screen](screens/login.png)
+  
+- **Follow-up Details**  
+  ![Follow-up Details](screens/details.png)
+  
+- **Dashboard with List of Generated Emails**  
+  ![Dashboard](screens/dashboard.png)
+  
+- **Account Settings**  
+  ![Account Settings](screens/settings.png)
 
 ---
