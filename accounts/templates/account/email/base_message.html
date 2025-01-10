@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Wiadomość</title>
+    <style>
+        .reset-btn {
+            padding: 10px 20px;
+            background-color: #f05960;
+            font-weight: 700;
+            color: #f5f5f5 !important;
+            border-radius: 7px !important;
+            text-decoration: none;
+            text-align: center !important;
+            display: block;
+            margin: 15px auto;
+            max-width: 150px;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body >
+    {% load i18n %}
+    {% autoescape off %}
+            <div class="email" style="width: 100%; margin: 0 auto; background-color: white">
+                <div class="email-top" style="height: 20px; background-color: #f05960"></div>
+                <div class="email-body" style="padding: 16px 24px; background-color: white">
+                    <div class="logo-wrapper" style="display: flex">
+                    </div>
+                    <div class="content" style="max-width: 620px; margin: 10px auto; padding: 20px; color: #101010">
+                        {% block content %}{% endblock content %}
+                    </div>
+                </div>
+                <div class="email-bottom" style="height: 20px; background-color: #f05960 "></div>
+                <p style=" font-size: 10px; opacity: .6; text-align: center">Ta wiadomość została wygenerowania automatycznie, prosimy nie odpowiadać na nią.</p>
+            </div>
+            {{ site_domain }}
+    {% endautoescape %}
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends "home.html" %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/login/login.css' %}">
+{% endblock %}
+<title>{% block title %} - Sign in{% endblock %}</title>
+
+{% block content %}
+    <div class="auth-form-wrap py-xl-0">
+        <div class="auth-form d-flex flex-column gap-4 w-xxl-55 w-xl-75 w-sm-90 w-xs-100">
+            {% include 'partials/messages_list.html' %}
+            <form method="POST" class="login-form">
+                {% csrf_token %}
+                <h1 class="display-4 mb-10">Welcome back</h1>
+                <p class="mb-15">Sign in to gain access to Your profile and all actions</p>
+                <div class="login-form">
+                    {{ form.non_field_errors}}
+                    {% for field in form %}
+                        <label class="mb-0" for="{{ field.auto_id }}">
+                            {{ field.label }}
+                            <input class="form-control" type="{{ field.field.widget.input_type }}" id="{{ field.auto_id }}" name="{{ field.name }}" placeholder="{{ field.label }}" required>
+                            {{ field.errors }}
+                        </label>
+                    {% endfor %}
+                </div>
+               <a class="fs-link text-center" href="/accounts/password/reset/">
+                   Forgot password?
+               </a>
+                <div class="d-flex flex-column mt-20 gap-2">
+                    <button class="btn btn-dark shadow-lg" type="submit">Sign in</button>
+                    <a class="btn btn-outline-dark shadow-lg" href="{% url 'register' %}">
+                        Sign up
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src={% static 'pages/vendors/owl.carousel/owl.carousel.min.js' %}></script>
+    <script defer src={% static 'pages/assets/js/login-data.js' %}></script>
+{% endblock %}
+

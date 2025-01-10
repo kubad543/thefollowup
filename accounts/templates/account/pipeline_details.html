@@ -1,0 +1,113 @@
+{% extends 'home-post-login.html' %}
+{% load static %}
+{% block title %} - Pipeline view {% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/dashboard/dashboard.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <div class="flex-column pa-20">
+        <div class="content-wrapper d-flex flex-column flex-wrap flex-lg-row" style="gap: 15px">
+            <div class="card flex-fill d-flex flex-column pa-20 shadow-lg m-0" style="gap: 15px">
+                <div class="d-flex justify-content-between w-100">
+                    <h1 class="font-28 font-weight-600 text-capitalize">Pipeline details</h1>
+                    <p>Today {% now "d M Y"%}</p>
+                </div>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            {% if 'success' in message.tags %}
+                                <div class="alert alert-success" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% elif 'error' in message.tags %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% else %}
+                                <div class="alert alert-primary" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-column gap-2">
+                        <div class="d-flex flex-column">
+                            <p><strong>Pipeline ID: </strong>{{ pipeline.id }}</p>
+                            <p><strong>Name: </strong>{{ pipeline.name }}</p>
+                            <p><strong>Language: </strong>{{ pipeline.get_language_display }}</p>
+                            {% if pipeline.status == 'ACTIVE' %}
+                            <p><strong>Status: </strong><span class="text-success font-weight-600">{{ pipeline.get_status_display }}</span></p>
+                            {% elif pipeline.status == 'DRAFT' %}
+                            <p><strong>Status: </strong><span class="text-warning font-weight-600">{{ pipeline.get_status_display }}</span></p>
+                            {% else %}
+                            <p><strong>Status: </strong><span class="text-danger font-weight-600">{{ pipeline.get_status_display }}</span></p>
+                            {% endif %}
+                            <p><strong>Recipient name: </strong>{{ pipeline.recipient.first_name }} {{ pipeline.recipient.last_name }}</p>
+                            <p><strong>Company name: </strong>{{ pipeline.company.name }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+
+                <div class="d-flex flex-column flex-md-row gap-4 justify-content-md-between">
+                    <form action="{% url 'stop_pipeline' pipeline.id %}" method="post">
+                        {% csrf_token %}
+                        {% if pipeline.status == 'ACTIVE' %}
+                            <button type="submit" class="btn btn-danger ">Stop pipeline</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-success ">Activate pipeline</button>
+                        {% endif %}
+                    </form>
+                    <form action="{% url 'delete_pipeline' pipeline.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger ">Delete pipeline</button>
+                    </form>
+                </div>
+
+                    <hr class="border-dark"/>
+                <div class="d-flex flex-column">
+                    <h3 class="font-24 font-weight-600 mb-2">E-mails</h1>
+                    <h3 class="font-20 font-weight-600 mb-2">Origin message</h3>
+                    <div class="d-flex flex-column">
+                    <p><strong>Status:</strong> {{ email_followups.get_status_display }}</p>
+                    <p><strong>Subject:</strong> {{ email_followups.subject }}</p>
+                    <p><strong>Text:</strong> {{ email_followups.improved_text|linebreaksbr }}</p>
+</div>
+                    <hr class="border-dark"/>
+                    <br>
+                    <div class="d-flex flex-column">
+                    <h3 class="font-20 font-weight-600 mb-2">Follow ups</h3>
+                    <ul>
+                        {% for followup in followups %}
+                            <li>
+                                <p><strong>No.: {{ followup.number }}</strong></p>
+                                <p><strong>Post date:</strong> {{ followup.date_to_send }}</p>
+                                <p><strong>Status:</strong> {{ followup.get_status_display }}</p>
+                                <p><strong>Text:</strong> {{ followup.improved_text|linebreaksbr }}</p>
+
+                            </li>
+                            {% if not forloop.last %}
+                                <hr class="border-dark"/>
+                                {% else %}
+                                <br>
+                            {% endif %}
+                        {% empty %}
+                            <li>No related e-mails.</li>
+                        {% endfor %}
+                    </ul>
+</div>
+                </div>
+            </div>
+
+            {% block content-user %}{% endblock content-user %}
+            {% block content-worker %}{% endblock content-worker %}
+        </div>
+    </div>
+{% endblock content %}

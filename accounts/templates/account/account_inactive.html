@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}
+    - Account Inactive
+{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/logout/logout.css' %}">
+    <link rel="stylesheet" href="{% static 'pages/assets/css/style.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <div class="logout-wrapper">
+        <div class="logout">
+            <h1 class="display-5">Account Inactive</h1>
+            <hr class="border-dark"/>
+            <p class="logout_message text-muted"> Your account is not active. Please activate your account using the link sent to your email </p>
+            <a class="btn btn-dark w-100" href="/accounts/login">Log in again</a>
+        </div>
+    </div>
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src={% static 'pages/vendors/owl.carousel/owl.carousel.min.js' %}></script>
+    <script defer src={% static 'pages/assets/js/login-data.js' %}></script>
+{% endblock content %}

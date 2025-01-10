@@ -1,0 +1,62 @@
+{% extends 'home-post-login.html' %}
+{%  load static %}
+{% load i18n %}
+{% block title %} - Edytuj Profil{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/profile/profile.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <div class="col-xl-12 py-20">
+        <div class="container">
+            <div class="w-100">
+                <div class="card pa-20 shadow-lg">
+                    {% include 'partials/messages_list.html' %}
+                    <div class="card-text">
+                        <h1 class="font-28 font-weight-600">Edit profile data</h1>
+                    </div>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <form method="POST" action="{% url 'profile' %}">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="form-group">
+                            <label for="id_name">First name</label>
+                            <input type="text" class="form-control" id="id_name" name="name" placeholder="{% trans 'Enter your first name' %}" value="{{ form.name.value|default_if_none:'' }}">
+                            {{ form.name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_surname">Last name</label>
+                            <input type="text" class="form-control" id="id_surname" name="surname" placeholder="{% trans 'Enter your last name' %}" value="{{ form.surname.value|default_if_none:'' }}">
+                            {{ form.surname.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_company">Company name</label>
+                            <input type="text" class="form-control" id="id_company" name="company" placeholder="{% trans 'Enter your company name' %}" value="{{ form.company.value|default_if_none:'' }}">
+                            {{ form.company.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_company">BCC no 1 (will be added to all your emails by default)</label>
+                            <input type="text" class="form-control" id="id_bcc_1" name="bcc_1" placeholder="{% trans 'Enter bcc address no 1' %}" value="{{ form.bcc_1.value|default_if_none:'' }}">
+                            {{ form.bcc_1.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_company">BCC no 2 (will be added to all your emails by default)</label>
+                            <input type="text" class="form-control" id="id_bcc_2" name="bcc_2" placeholder="{% trans 'Enter bcc address no 2' %}" value="{{ form.bcc_2.value|default_if_none:'' }}">
+                            {{ form.bcc_2.errors }}
+                        </div>
+                        <div class="d-flex btn-wrapper">
+                            <button type="submit" class="btn btn-dark mt-2 mb-2">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %} - Sign up {% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/signup/signup.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <div class="auth-form-wrap py-xl-0">
+        <div class="auth-form d-flex flex-column gap-4 w-xxl-55 w-xl-75 w-sm-90 w-xs-100">
+            <h1 class="display-4 mb-10">Sign up</h1>
+            <p class="mb-30">Create an account and start creating followups right now!</p>
+            {% include 'partials/messages_list.html' %}
+            <form method="POST" class="signup d-flex flex-column">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.name == 'password1' %}
+                        <label for="{{ field.auto_id }}">
+                                {{ field.label }}<i class="fa fa-info-circle pl-5" data-toggle="tooltip" data-placement="right" data-title="Password should contain at least 8 characters, capital letter and a digit" style="cursor: pointer"></i>
+
+                            <input type="{{ field.field.widget.input_type }}" id="{{ field.auto_id }}" name="{{ field.name }}" placeholder="{{ field.label }}" class="form-control" value="{{ field.value|default_if_none:'' }}" {% if  field.field.required%}required{% endif %}>
+                            {{ field.errors }}
+                        </label>
+                    {% else %}
+                        <label for="{{ field.auto_id }}">
+                            {{ field.label }}
+                            <input type="{{ field.field.widget.input_type }}" id="{{ field.auto_id }}" name="{{ field.name }}" placeholder="{{ field.label }}" class="form-control" value="{{ field.value|default_if_none:'' }}" {% if  field.field.required%}required{% endif %}>
+                            {{ field.errors }}
+                        </label>
+                    {% endif %}
+                {% endfor %}
+                <hr class="border-1 border-dark my-10"/>
+                <div class="secondary-info" style="display: grid; grid-template-columns: repeat(2,1fr); gap: 10px;">
+                    {% for field in form_s %}
+                        <label for="{{ field.auto_id }}">
+                            {{ field.label }}
+                            <input type="{{ field.field.widget.input_type }}" id="{{ field.auto_id }}" name="{{ field.name }}" placeholder="{{ field.label }}" class="form-control" value="{{ field.value|default_if_none:'' }}" {% if  field.field.required%}required{% endif %}>
+                            {{ field.errors }}
+                        </label>
+                    {% endfor %}
+                </div>
+                 <div class="d-flex align-items-center">
+                    <input required id="same-address" type="checkbox">
+                    <label class="font-14 m-0 ml-5" for="same-address">I've read and accepted <a class="fs-link" href="">terms and conditions</a></label>
+                </div>
+                <div class="d-flex flex-column mb-20 mt-5">
+                    <button type="submit" class="btn btn-dark shadow-lg w-100 mb-10">Sign up</button>
+                    <a class="btn btn-outline-dark shadow-lg" href="{% url 'main' %}">
+                        Sign in
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src={% static 'pages/vendors/owl.carousel/owl.carousel.min.js' %}></script>
+    <script defer src={% static 'pages/assets/js/login-data.js' %}></script>
+    <script defer src="{% static 'pages/assets/custom-js/required-labels.js' %}"></script>
+{% endblock %}
