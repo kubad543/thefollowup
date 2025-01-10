@@ -1,0 +1,31 @@
+{% extends 'home-post-login.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load custom_filters %}
+{% block title %} - Post Content{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/dashboard/dashboard.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <div class="flex-column pa-20">
+        <div class="content-wrapper d-flex flex-column flex-wrap flex-lg-row" style="gap: 15px">
+            <div class="card flex-fill d-flex flex-column pa-20 shadow-lg m-0" style="gap: 15px">
+                <div class="d-flex justify-content-between w-100">
+                    <h1 class="font-20 font-weight-600 text-capitalize">Post Content</h1>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" value="{{ quantity|length }}">
+                    {% for n in quantity %}
+                        <div class="form-group" style="margin-top: 10px;">
+                            <label for="article_content_{{ forloop.counter }}" style="display: block;">Article Content {{ forloop.counter }}:</label>
+                            <textarea id="article_content_{{ forloop.counter }}" name="article_content_{{ forloop.counter }}" class="form-control" style="width: 100%; min-height: 250px;" required>{{ article_contents|get_item:n }}</textarea>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-dark btn-lg mt-5">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
