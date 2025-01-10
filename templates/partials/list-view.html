@@ -1,0 +1,41 @@
+
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block styles %}
+    <!-- DataTables -->
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.8/r-2.5.0/sp-2.2.0/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/table-view/table-layout.css' %}">
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/messages/messages-write.css' %}">
+    {% block additional-styles %}{% endblock additional-styles %}
+{% endblock styles %}
+{% block content %}
+    <div class="col-xl-12 py-20">
+        <div class="container">
+            <div class="w-100">
+                <div class="d-flex flex-column card pa-20 shadow-lg">
+                    {% block message %}{% endblock message %}
+                    <div class="card-text">
+                        <h1 class="font-20 font-weight-600 text-capitalize">{% block list-title %}{% endblock list-title %}</h1>
+                        <p>{% block list-desc %}{% endblock list-desc %}</p>
+                    </div>
+                    {% block additional-section %}{% endblock additional-section %}
+                    <div class="d-flex flex-column">
+                        <label for="search-table" class="align-self-md-end align-self-center d-flex align-items-center mb-20 gap-2">
+                            Wyszukaj:
+                            <input class="form-control ml-auto" type="text" placeholder="Wyszukaj" id="search-table">
+                        </label>
+                        <div style="overflow-x: scroll">
+                            {% block list-table %}{% endblock list-table %}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script defer src="{% static 'pages/assets/custom-js/tables.js' %}"></script>
+{% endblock content %}
