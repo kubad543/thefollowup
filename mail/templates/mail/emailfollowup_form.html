@@ -1,0 +1,32 @@
+{% extends 'home-post-login.html' %}
+{% load static %}
+{% block title %} - Follow-up Form{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/profile/profile.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <div class="flex-column pa-20 container">
+        <div class="content-wrapper d-flex flex-column flex-wrap flex-lg-row" style="gap: 15px">
+            <div class="card flex-fill d-flex flex-column pa-20 shadow-lg m-0" style="gap: 15px">
+                <div class="d-flex justify-content-between w-100">
+                    <h1 class="font-20 font-weight-600 text-capitalize">Email Follow-up</h1>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="original_text" style="display: block; font-weight: 600;">Original Email Content:</label>
+                        <textarea id="original_text" class="form-control" style="width: 100%; min-height: 250px;" disabled>{{ email_followup.original_text }}</textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="form_container" style="display: block; font-weight: 600;">Improved Mail:</label>
+                        <div id="form_container" style="width: 100%;">
+                            {{ form.as_p }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-lg mt-5">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

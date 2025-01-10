@@ -1,0 +1,98 @@
+{% extends 'home-post-login.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} - Mail{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/profile/profile.css' %}">
+{% endblock styles %}
+
+{% block content %}
+     <div class="flex-column pa-20 container">
+        <div class="content-wrapper d-flex flex-column flex-wrap flex-lg-row" style="gap: 15px">
+            <div class="card flex-fill d-flex flex-column pa-20 shadow-lg m-0" style="gap: 15px">
+                <div class="d-flex justify-content-between w-100">
+                    <h1 class="font-28 font-weight-600">Create e-mail to client</h1>
+                </div>
+                <form method="post" class="d-flex flex-column gap-4 w-100">
+                    {% csrf_token %}
+                    <div class="d-flex flex-column flex-md-row gap-4 w-100 flex-grow">
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex flex-row gap-2">
+                            <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}{% if form.name.field.required %} *{% endif %}</label>
+                                {% render_field form.name class="form-control" %}
+                                {{ field.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.surname.id_for_label }}">{{ form.surname.label }}{% if form.surname.field.required %} *{% endif %}</label>
+                                {% render_field form.surname class="form-control" %}
+                                {{ field.errors }}
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.recipient_mail.id_for_label }}">{{ form.recipient_mail.label }}{% if form.recipient_mail.field.required %} *{% endif %}</label>
+                                {% render_field form.recipient_mail class="form-control" %}
+                                {{ field.errors }}
+                            </div>
+                            <br>
+							<div class="d-flex flex-row gap-2">
+                            <div class="form-group">
+                                <label for="{{ form.company_name.id_for_label }}">{{ form.company_name.label }} {% if form.company_name.field.required %} *{% endif %}</label>
+                                {% render_field form.company_name class="form-control" %}
+                                {{ field.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.company_url.id_for_label }}">{{ form.company_url.label }}{% if form.company_url.field.required %} *{% endif %}</label>
+                                {% render_field form.company_url class="form-control" %}
+                                {{ field.errors }}
+                            </div>
+							</div>
+                            <br>
+                            <div class="d-flex flex-column flex-md-row gap-4 w-100 flex-grow">
+                                <div class="form-group col-md-8">
+                                    <label for="{{ form.langauge_text.id_for_label }}">{{ form.langauge_text.label }}{% if form.language_text.field.required %} *{% endif %}</label>
+                                    {% render_field form.langauge_text class="form-control" %}
+                                    {{ form.langauge_text.errors }}
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="{{ form.quantity.id_for_label }}">{{ form.quantity.label }}{% if form.quantity.field.required %} *{% endif %}</label>
+                                    {% render_field form.quantity class="form-control" %}
+                                    {{ form.quantity.errors }}
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row gap-2">
+                                <div class="form-group">
+                                    <label for="{{ form.bcc_1.id_for_label }}">{{ form.bcc_1.label }}{% if form.bcc_1.field.required %} *{% endif %}</label>
+                                    {% render_field form.bcc_1 class="form-control" %}
+                                    {{ form.bcc_1.errors }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.bcc_2.id_for_label }}">{{ form.bcc_2.label }}{% if form.bcc_2.field.required %} *{% endif %}</label>
+                                    {% render_field form.bcc_2 class="form-control" %}
+                                    {{ form.bcc_2.errors }}
+                                </div>
+                            </div>
+                        </div>
+<div class="d-flex flex-column gap-2 flex-grow w-100">
+
+
+    <div class="form-group">
+        <label for="{{ form.subject.id_for_label }}">{{ form.subject.label }}{% if form.subject.field.required %} *{% endif %}</label>
+        {% render_field form.subject class="form-control" %}
+        {{ field.errors }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.original_text.id_for_label }}">{{ form.original_text.label }}{% if form.original_text.field.required %} *{% endif %}</label>
+        {% render_field form.original_text class="form-control" style="height: 350px;" %}
+        {{ field.errors }}
+    </div>
+</div>
+
+
+</div>
+                    <button type="submit" class="btn btn-dark btn-lg mt-5">Save</button>
+                </form>
+            </div>
+        </div>
+     </div>
+{%  endblock content %}

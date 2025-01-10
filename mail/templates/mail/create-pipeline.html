@@ -1,0 +1,30 @@
+{% extends 'home-post-login.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} - Tworzenie Pipeline{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'pages/assets/custom-css/profile/profile.css' %}">
+{% endblock styles %}
+
+{% block content %}
+     <div class="flex-column pa-20">
+        <div class="content-wrapper d-flex flex-column flex-wrap flex-lg-row" style="gap: 15px">
+            <div class="card flex-fill d-flex flex-column pa-20 shadow-lg m-0" style="gap: 15px">
+                <div class="d-flex justify-content-between w-100">
+                    <h1 class="font-20 font-weight-600">Utworzenie maila do klienta</h1>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <label for="{{ field.id_for_label }}">
+                          {{ field.label }}{% if field.field.required %}*{% endif %}
+                        </label>
+                        {% render_field field %}
+                    {% endfor %}
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+        </div>
+     </div>
+{%  endblock content %}
