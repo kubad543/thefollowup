@@ -1,9 +1,0 @@
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO or message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                <li{% if message.tags %} class="{{ message.tags }} text-{% if message.tags == 'info' %}success{% elif message.tags == 'error' %}danger{% endif %} text-center"{% endif %}>{{ message }}</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-{% endif %}
