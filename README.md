@@ -1,5 +1,24 @@
 # TheFollowUp
 
+## Screenshots
+
+The following screenshots demonstrate some of the core features of the application:
+
+- **Login Screen**  
+  ![Login Screen](screens/login.png)
+  
+- **Follow-up Details**  
+  ![Follow-up Details](screens/details.png)
+  
+- **Dashboard with List of Generated Emails**  
+  ![Dashboard](screens/dashboard.png)
+  
+- **Account Settings**  
+  ![Account Settings](screens/settings.png)
+
+---
+
+
 ## Overview
 
 **TheFollowUp** is an application designed to automate social media posts and follow-up emails. By leveraging OpenAI's API, the app generates and refines posts based on original messages, then creates additional follow-ups that are sent automatically to users at scheduled times.
@@ -61,23 +80,5 @@ I was responsible for developing the **backend** of the application, which inclu
 - Integrating OpenAI API for generating content based on user input.
 - Setting up email services using Zenbox and configuring Stripe for premium status management.
 - Assisting with frontend HTML to create a working user interface, focusing on backend integration.
-
----
-
-## Screenshots
-
-The following screenshots demonstrate some of the core features of the application:
-
-- **Login Screen**  
-  ![Login Screen](screens/login.png)
-  
-- **Follow-up Details**  
-  ![Follow-up Details](screens/details.png)
-  
-- **Dashboard with List of Generated Emails**  
-  ![Dashboard](screens/dashboard.png)
-  
-- **Account Settings**  
-  ![Account Settings](screens/settings.png)
 
 ---
